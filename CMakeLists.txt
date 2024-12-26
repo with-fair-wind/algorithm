@@ -1,35 +1,23 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.18)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-project(algorthm LANGUAGES CXX)
-
-if(PROJECT_BINARY_DIR STREQUAL PROJECT_SOURCE_DIR)
-    message(WARNING "The binary directory of CMake cannot be the same as source directory!")
+if(NOT MSVC)
+    # 设置 GCC 编译器使用 UTF-8 编码
+    add_compile_options(-finput-charset=UTF-8 -fexec-charset=GBK)
+    add_link_options(-fexec-charset=GBK)
 endif()
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-if(WIN32)
-    add_definitions(-DNOMINMAX -D_USE_MATH_DEFINES)
-endif()
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake;${CMAKE_MODULE_PATH}")
 
-if(NOT MSVC)
-    find_program(CCACHE_PROGRAM ccache)
+project(CppCMakeDemo LANGUAGES CXX)
 
-    if(CCACHE_PROGRAM)
-        message(STATUS "Found CCache: ${CCACHE_PROGRAM}")
-        set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ${CCACHE_PROGRAM})
-        set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ${CCACHE_PROGRAM})
-    endif()
-endif()
+include(MyUsefulFuncs)
 
-file(GLOB_RECURSE SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp main.cpp)
-file(GLOB_RECURSE HEADER_FILES ${PROJECT_SOURCE_DIR}/inc/*.h)
-
-include_directories(${PROJECT_SOURCE_DIR}/inc)
-
-add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES})
+add_subdirectory(algoLib)
+add_subdirectory(main)

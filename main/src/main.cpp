@@ -1,4 +1,4 @@
-#include "GiniCal/Experiment.h"
+#include <GiniCal/Experiment.h>
 
 int main()
 {
