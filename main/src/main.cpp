@@ -2,6 +2,6 @@
 
 int main()
 {
-    experiment(100, 1000);
+    GiniCal::experiment(100, 1000);
     return 0;
 }

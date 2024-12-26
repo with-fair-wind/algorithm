@@ -6,6 +6,10 @@ if(NOT MSVC)
     add_link_options(-fexec-charset=GBK)
 endif()
 
+if(WIN32)
+    add_definitions(-DNOMINMAX -D_USE_MATH_DEFINES)
+endif()
+
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
