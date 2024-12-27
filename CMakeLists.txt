@@ -1,11 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
 
-if(NOT MSVC)
-    # 设置 GCC 编译器使用 UTF-8 编码
-    add_compile_options(-finput-charset=UTF-8 -fexec-charset=GBK)
-    add_link_options(-fexec-charset=GBK)
-endif()
-
 if(WIN32)
     add_definitions(-DNOMINMAX -D_USE_MATH_DEFINES)
 endif()
