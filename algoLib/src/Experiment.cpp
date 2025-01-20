@@ -1,4 +1,4 @@
-#include <GiniCal/Experiment.h>
+#include <GiniCal/experiment.h>
 
 namespace GiniCal
 {
