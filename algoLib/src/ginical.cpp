@@ -1,51 +1,50 @@
-#include <GiniCal/experiment.h>
+#include <GiniCal/ginical.h>
 
-namespace GiniCal
+namespace Algo_GiniCal
 {
-    void experiment(int n, int t)
+    void experiment(int nums, int rounds)
     {
-        std::vector<double> wealth(n, 100.0);
-        std::vector<bool> hasMoney(n, false);
+        std::vector<double> wealth(nums, 100.0);
+        std::vector<bool> hasMoney(nums, false);
         std::srand(std::time(nullptr));
 
-        for (int i = 0; i < t; i++)
+        for (int i = 0; i < rounds; i++)
         {
-            for (int j = 0; j < n; j++)
-            {
+            for (int j = 0; j < nums; j++)
                 if (wealth[j] > 0)
                     hasMoney[j] = true;
-            }
-            for (int j = 0; j < n; j++)
+
+            for (int j = 0; j < nums; j++)
             {
-                int other = j;
-                do
+                if (hasMoney[j])
                 {
-                    other = rand() % n;
-                } while (other == j);
-                wealth[j]--;
-                wealth[other]++;
+                    int other = j;
+                    do
+                    {
+                        other = rand() % nums;
+                    } while (other == j);
+                    wealth[j]--;
+                    wealth[other]++;
+                }
             }
         }
 
         std::sort(wealth.begin(), wealth.end());
         std::cout << "列出每个人的财富(贫穷到富有) : " << std::endl;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < nums; i++)
         {
             std::cout << static_cast<int>(wealth[i]) << " ";
             if (i % 10 == 9)
-            {
                 std::cout << std::endl;
-            }
         }
-        std::cout << std::endl;
-        std::cout << "这个社会的基尼系数为 : " << calculateGini(wealth) << std::endl;
+        std::cout << "\n这个社会的基尼系数为 : " << calculateGini(wealth) << std::endl;
     }
 
     double calculateGini(const std::vector<double> &wealth)
     {
         double sumOfAbsoluteDifferences = 0.0;
         double sumOfWealth = 0.0;
-        int n = wealth.size();
+        size_t n = wealth.size();
         for (size_t i = 0; i < wealth.size(); i++)
         {
             sumOfWealth += wealth[i];

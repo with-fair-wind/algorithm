@@ -1,9 +1,12 @@
-#include <GiniCal/experiment.h>
-#include <Bit/bitBase.h>
+#include <Demo/demo_sort.h>
+#include <Demo/demo_bit.h>
+#include <Demo/demo_ginical.h>
 
 int main()
 {
-    // GiniCal::experiment(100, 1000);
-    BitSystem::printBinary(4);
+    // Demo_Sort::demo_v1();
+    // Demo_Sort::demo_v2();
+    Demo_BitSystem::demo_v1();
+
     return 0;
 }
