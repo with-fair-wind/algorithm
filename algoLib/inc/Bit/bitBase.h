@@ -1,9 +1,8 @@
 #pragma once
 
-#include <iostream>
-#include <climits>
+#include <stdafx.h>
 
-namespace BitSystem
+namespace Algo_BitSystem
 {
     template <typename T, typename = std::enable_if_t<std::is_integral_v<T>>>
     void printBinary(T num)
