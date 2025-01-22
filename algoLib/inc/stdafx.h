@@ -7,6 +7,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <climits>
+#include <memory>
+#include <thread>
+#include <mutex>
+#include <chrono>
 
 #define TO_UPPER_FIRST_CHAR(name) \
     (name[0] >= 'a' && name[0] <= 'z' ? (name[0] - 'a' + 'A') : name[0])
