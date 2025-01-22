@@ -4,7 +4,7 @@ namespace Algo_Sort
 {
     Logarithm::Logarithm()
     {
-        m_rounds = 1000000;
+        m_rounds = 100000;
         m_maxSize = 10;
         m_maxVal = 100;
     }
