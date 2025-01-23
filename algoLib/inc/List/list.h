@@ -100,7 +100,7 @@ namespace Algo_List
             if (cur1->_val < cur2->_val)
             {
                 pre->_next = cur1;
-                cur1 = cur1->_next
+                cur1 = cur1->_next;
             }
             else
             {
@@ -118,33 +118,7 @@ namespace Algo_List
     // 请你将两个数相加，并以相同形式返回一个表示和的链表。
     // 你可以假设除了数字 0 之外，这两个数都不会以 0 开头
     // 测试链接：https://leetcode.cn/problems/add-two-numbers/
-    std::shared_ptr<SinglyList<int>> addLists(std::shared_ptr<SinglyList<int>> head1, std::shared_ptr<SinglyList<int>> head2)
-    {
-        std::shared_ptr<SinglyList<int>> ans = nullptr, cur = nullptr;
-        int carry = 0;
-        while (head1 || head2)
-        {
-            int sum = (head1 ? head1->_val : 0) + (head2 ? head2->_val : 0) + carry;
-            carry = sum / 10;
-            int val = sum % 10;
-            if (!ans)
-            {
-                ans = std::make_shared<SinglyList<int>>(val);
-                cur = ans;
-            }
-            else
-            {
-                cur->_next = std::make_shared<SinglyList<int>>(val);
-                cur = cur->_next;
-            }
-            head1 = head1 ? head1->_next : nullptr;
-            head2 = head2 ? head2->_next : nullptr;
-        }
-        if (carry)
-            cur->_next = std::make_shared<SinglyList<int>>(1);
-
-        return ans;
-    }
+    std::shared_ptr<SinglyList<int>> addLists(std::shared_ptr<SinglyList<int>> head1, std::shared_ptr<SinglyList<int>> head2);
 
     // 给你一个链表的头节点 head 和一个特定值 x
     // 请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
@@ -155,7 +129,7 @@ namespace Algo_List
     {
         std::shared_ptr<SinglyList<T>> leftHead = nullptr, leftTail = nullptr;
         std::shared_ptr<SinglyList<T>> rightHead = nullptr, rightTail = nullptr;
-        std::shared_ptr < SinglyList<T> next = nullptr;
+        std::shared_ptr<SinglyList<T>> next = nullptr;
         while (head)
         {
             next = head->_next;
