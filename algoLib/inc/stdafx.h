@@ -22,3 +22,23 @@ private:                                        \
 public:                                         \
     type get##name() const { return m_##name; } \
     void set##name(const type &value) { m_##name = value; }
+
+#define SAFE_DELETE_ARRAY(arr) \
+    do                         \
+    {                          \
+        if (arr)               \
+        {                      \
+            delete[] arr;      \
+            arr = nullptr;     \
+        }                      \
+    } while (0);
+
+#define SAFE_DELETE_POINT(point) \
+    do                           \
+    {                            \
+        if (point)               \
+        {                        \
+            delete point;        \
+            point = nullptr;     \
+        }                        \
+    } while (0);

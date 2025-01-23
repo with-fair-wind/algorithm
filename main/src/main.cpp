@@ -3,6 +3,7 @@
 #include <Demo/demo_ginical.h>
 #include <Demo/demo_binary_search.h>
 #include <Demo/demo_list.h>
+#include <Demo/demo_structure.h>
 
 #include <Test/test_thread_combine_sharedptr.h>
 
