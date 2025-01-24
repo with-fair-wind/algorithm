@@ -7,17 +7,19 @@ namespace Algo_List
     template <typename T, typename = std::void_t<decltype(T{})>>
     struct SinglyList
     {
-        T _val = T{};
+        T _val{};
         std::shared_ptr<SinglyList<T>> _next = nullptr;
+        SinglyList() = default;
         SinglyList(const T &val, std::shared_ptr<SinglyList<T>> next = nullptr) : _val{val}, _next{next} {}
     };
 
     template <typename T, typename = std::void_t<decltype(T{})>>
     struct DoublyList
     {
-        T _val = T{};
+        T _val{};
         std::shared_ptr<DoublyList<T>> _next = nullptr;
         std::shared_ptr<DoublyList<T>> _last = nullptr;
+        DoublyList() = default;
         DoublyList(const T &val, std::shared_ptr<DoublyList<T>> next = nullptr, std::shared_ptr<DoublyList<T>> last = nullptr) : _val{val}, _next{next}, _last{last} {}
     };
 
