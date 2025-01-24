@@ -20,11 +20,11 @@ namespace Demo_List
 
     void demo_v2()
     {
-        std::shared_ptr<DoublyList<int>> head = std::make_shared<DoublyList<int>>(1);
-        head->_next = std::make_shared<DoublyList<int>>(2);
-        head->_next->_next = std::make_shared<DoublyList<int>>(3);
-        head->_next->_next->_next = std::make_shared<DoublyList<int>>(4);
-        head->_next->_next->_next->_next = std::make_shared<DoublyList<int>>(5);
+        std::shared_ptr<DoublyList<int>> head = std::make_shared<DoublyList<int>>();
+        head->_next = std::make_shared<DoublyList<int>>(1);
+        head->_next->_next = std::make_shared<DoublyList<int>>(2);
+        head->_next->_next->_next = std::make_shared<DoublyList<int>>(3);
+        head->_next->_next->_next->_next = std::make_shared<DoublyList<int>>(4);
 
         head->_next->_last = head;
         head->_next->_next->_last = head->_next;
