@@ -12,9 +12,6 @@
 #include <mutex>
 #include <chrono>
 
-#define TO_UPPER_FIRST_CHAR(name) \
-    (name[0] >= 'a' && name[0] <= 'z' ? (name[0] - 'a' + 'A') : name[0])
-
 #define PROPERTY_CREATE(type, name)             \
 private:                                        \
     type m_##name;                              \
@@ -42,3 +39,7 @@ public:                                         \
             point = nullptr;     \
         }                        \
     } while (0);
+
+#define DISABLE_COPY(Class)        \
+    Class(const Class &) = delete; \
+    Class &operator=(const Class &) = delete;

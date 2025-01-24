@@ -11,6 +11,7 @@ namespace Algo_Structure
     template <typename T>
     class Queue
     {
+        DISABLE_COPY(Queue)
     public:
         Queue(int capacity) : m_capacity(capacity), m_arr(new T[m_capacity]) {}
         ~Queue() { SAFE_DELETE_ARRAY(m_arr) }
@@ -54,8 +55,34 @@ namespace Algo_Structure
     private:
         const int m_capacity;
         T *m_arr = nullptr;
-        size_t m_L = 0;
-        size_t m_R = 0;
-        size_t m_size = 0;
+        int m_L = 0;
+        int m_R = 0;
+        unsigned int m_size = 0;
+    };
+
+    // 以数组实现栈
+    // 同时在栈里的元素个数不会超过capacity
+    template <typename T>
+    class Stack
+    {
+        DISABLE_COPY(Stack)
+
+    public:
+        Stack(int capacity) : m_capacity{capacity}, m_arr{new T[m_capacity]} {}
+        ~Stack() { SAFE_DELETE_ARRAY(m_arr) }
+
+        void push(T val)
+        {
+            m_arr[m_size++] = val;
+        }
+        T pop() { return m_arr[--m_size]; }
+        T top() const { return m_arr[m_size - 1]; }
+        bool empty() const { return !m_size; }
+        int size() const { return m_size; }
+
+    private:
+        const int m_capacity;
+        T *m_arr = nullptr;
+        unsigned int m_size = 0;
     };
 } // namespace Algo_Structure

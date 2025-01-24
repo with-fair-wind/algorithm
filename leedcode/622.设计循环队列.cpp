@@ -62,9 +62,9 @@ public:
 private:
     const int m_capacity;
     int *m_arr = nullptr;
-    size_t m_L = 0;
-    size_t m_R = 0;
-    size_t m_size = 0;
+    int m_L = 0;
+    int m_R = 0;
+    unsigned int m_size = 0;
 };
 
 /**
