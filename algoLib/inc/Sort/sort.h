@@ -4,7 +4,7 @@
 
 namespace Algo_Sort
 {
-    template <typename T, typename = decltype(std::declval<T>() < std::decay_t<T>())>
+    template <typename T, typename = decltype(std::declval<T>() < std::declval<T>())>
     void selectionSort(std::vector<T> &vec)
     {
         if (vec.empty() || vec.size() < 2)
@@ -22,7 +22,7 @@ namespace Algo_Sort
         }
     }
 
-    template <typename T, typename = decltype(std::declval<T>() < std::decay_t<T>())>
+    template <typename T, typename = decltype(std::declval<T>() < std::declval<T>())>
     void bubbleSort(std::vector<T> &vec)
     {
         if (vec.empty() || vec.size() < 2)
@@ -38,7 +38,7 @@ namespace Algo_Sort
         }
     }
 
-    template <typename T, typename = decltype(std::declval<T>() < std::decay_t<T>())>
+    template <typename T, typename = decltype(std::declval<T>() < std::declval<T>())>
     void insertSort(std::vector<T> &vec)
     {
         if (vec.empty() || vec.size() < 2)
