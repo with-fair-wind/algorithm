@@ -11,6 +11,8 @@
 #include <thread>
 #include <mutex>
 #include <chrono>
+#include <queue>
+#include <stack>
 
 #define PROPERTY_CREATE(type, name)             \
 private:                                        \
