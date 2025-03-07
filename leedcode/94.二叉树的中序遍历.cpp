@@ -4,6 +4,7 @@
  * [94] 二叉树的中序遍历
  */
 #include <vector>
+#include <stack>
 
 using namespace std;
 

@@ -4,6 +4,7 @@
  * [145] 二叉树的后序遍历
  */
 #include <vector>
+#include <stack>
 
 using namespace std;
 
