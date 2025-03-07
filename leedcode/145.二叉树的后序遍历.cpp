@@ -1,11 +1,10 @@
 /*
- * @lc app=leetcode.cn id=144 lang=cpp
+ * @lc app=leetcode.cn id=145 lang=cpp
  *
- * [144] 二叉树的前序遍历
+ * [145] 二叉树的后序遍历
  */
-
 #include <vector>
-#include <stack>
+
 using namespace std;
 
 struct TreeNode
@@ -17,7 +16,6 @@ struct TreeNode
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
-
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -33,22 +31,28 @@ struct TreeNode
 class Solution
 {
 public:
-    vector<int> preorderTraversal(TreeNode *head)
+    vector<int> postorderTraversal(TreeNode *head)
     {
         if (!head)
             return {};
         std::vector<int> res;
         std::stack<TreeNode *> stack;
+        std::stack<TreeNode *> stackReverse;
         stack.push(head);
         while (!stack.empty())
         {
             TreeNode *cur = stack.top();
             stack.pop();
-            res.push_back(cur->val);
-            if (cur->right)
-                stack.push(cur->right);
+            stackReverse.push(cur);
             if (cur->left)
                 stack.push(cur->left);
+            if (cur->right)
+                stack.push(cur->right);
+        }
+        while (!stackReverse.empty())
+        {
+            res.push_back(stackReverse.top()->val);
+            stackReverse.pop();
         }
         return res;
     }
