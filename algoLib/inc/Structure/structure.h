@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdafx.h>
-
 namespace Algo_Structure
 {
     // 循环队列

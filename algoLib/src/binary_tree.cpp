@@ -50,21 +50,19 @@ namespace Algo_BinaryTree
             return {};
         std::vector<int> res;
         std::stack<TreeNode *> stack;
-        while (head)
+        while (head || !stack.empty())
         {
-            stack.push(head);
-            head = head->left;
-        }
-        while (!stack.empty())
-        {
-            TreeNode *cur = stack.top();
-            stack.pop();
-            res.push_back(cur->val);
-            cur = cur->right;
-            while (cur)
+            if (head)
             {
-                stack.push(cur);
-                cur = cur->left;
+                stack.push(head);
+                head = head->left;
+            }
+            else
+            {
+                head = stack.top();
+                stack.pop();
+                res.push_back(head->val);
+                head = head->right;
             }
         }
         return res;
@@ -84,6 +82,7 @@ namespace Algo_BinaryTree
         res.push_back(head->val);
         return res;
 #else
+#if 0
         if (!head)
             return {};
         std::vector<int> res;
@@ -106,6 +105,28 @@ namespace Algo_BinaryTree
             stackReverse.pop();
         }
         return res;
+#else
+        if (!head)
+            return {};
+        std::vector<int> res;
+        std::stack<TreeNode *> stack;
+        stack.push(head);
+        while (!stack.empty())
+        {
+            TreeNode *cur = stack.top();
+            if (cur->left && head != cur->left && head != cur->right)
+                stack.push(cur->left);
+            else if (cur->right && head != cur->right)
+                stack.push(cur->right);
+            else
+            {
+                stack.pop();
+                head = cur;
+                res.push_back(head->val);
+            }
+        }
+        return res;
+#endif
 #endif
     }
 } // namespace Algo_BinaryTree

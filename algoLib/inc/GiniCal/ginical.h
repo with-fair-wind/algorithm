@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdafx.h>
-
 namespace Algo_GiniCal
 {
     void experiment(int nums, int rounds);

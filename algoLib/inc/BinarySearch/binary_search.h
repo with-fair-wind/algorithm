@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdafx.h>
-
 namespace Algo_BinarySearch
 {
     // 升序数组中，寻找mum值

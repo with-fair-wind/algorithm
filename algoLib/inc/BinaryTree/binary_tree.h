@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdafx.h>
+// #include <stdafx.h>
 // 懒得写模板与智能指针了，Demo中的示例需手动delete
 // 和 leedcode 中结构统一
 
@@ -17,5 +17,4 @@ namespace Algo_BinaryTree
     std::vector<int> preorderTraversal(TreeNode *head);  // 先序遍历(头左右)也是深度遍历
     std::vector<int> inorderTraversal(TreeNode *head);   // 中序遍历(左头右)
     std::vector<int> postorderTraversal(TreeNode *head); // 后序遍历(左右头)
-
 } // namespace Algo_BinaryTree

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdafx.h>
-
 namespace Algo_List
 {
     template <typename T, typename = std::void_t<decltype(T{})>>
