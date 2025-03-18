@@ -22,11 +22,11 @@ namespace Demo_Sort
 
         std::vector<int> vec{2, 3, 4, 2, 6, 1};
         Algo_Sort::insertSort(vec);
-        Algo_Sort::Logarithm::printVec(vec);
+        Algo_Utility::Utility::printVec(vec);
 
         std::vector<X> vecx{X{2}, X{1}, X{3}, X{5}, X{2}};
         Algo_Sort::selectionSort(vecx);
-        Algo_Sort::Logarithm::printVec(vecx);
+        Algo_Utility::Utility::printVec(vecx);
     }
 
     void demo_v2()

@@ -1,4 +1,5 @@
 #include <Sort/sort.h>
+#include <Utility/utility.h>
 
 namespace Algo_Sort
 {
@@ -47,9 +48,9 @@ namespace Algo_Sort
             if (!success)
             {
                 std::cout << "Failure Use Case: \n ";
-                printVec(ori);
-                printVec(vec1);
-                printVec(vec2);
+                Algo_Utility::Utility::printVec(ori);
+                Algo_Utility::Utility::printVec(vec1);
+                Algo_Utility::Utility::printVec(vec2);
                 return;
             }
         }
