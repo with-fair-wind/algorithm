@@ -30,21 +30,19 @@ public:
             return {};
         std::vector<int> res;
         std::stack<TreeNode *> stack;
-        while (head)
+        while (head || !stack.empty())
         {
-            stack.push(head);
-            head = head->left;
-        }
-        while (!stack.empty())
-        {
-            TreeNode *cur = stack.top();
-            stack.pop();
-            res.push_back(cur->val);
-            cur = cur->right;
-            while (cur)
+            if (head)
             {
-                stack.push(cur);
-                cur = cur->left;
+                stack.push(head);
+                head = head->left;
+            }
+            else
+            {
+                head = stack.top();
+                stack.pop();
+                res.push_back(head->val);
+                head = head->right;
             }
         }
         return res;

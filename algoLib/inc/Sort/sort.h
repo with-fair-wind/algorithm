@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdafx.h>
-
 namespace Algo_Sort
 {
     template <typename T, typename = decltype(std::declval<T>() < std::declval<T>())>

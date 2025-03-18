@@ -38,22 +38,20 @@ public:
             return {};
         std::vector<int> res;
         std::stack<TreeNode *> stack;
-        std::stack<TreeNode *> stackReverse;
         stack.push(head);
         while (!stack.empty())
         {
             TreeNode *cur = stack.top();
-            stack.pop();
-            stackReverse.push(cur);
-            if (cur->left)
+            if (cur->left && head != cur->left && head != cur->right)
                 stack.push(cur->left);
-            if (cur->right)
+            else if (cur->right && head != cur->right)
                 stack.push(cur->right);
-        }
-        while (!stackReverse.empty())
-        {
-            res.push_back(stackReverse.top()->val);
-            stackReverse.pop();
+            else
+            {
+                stack.pop();
+                head = cur;
+                res.push_back(head->val);
+            }
         }
         return res;
     }

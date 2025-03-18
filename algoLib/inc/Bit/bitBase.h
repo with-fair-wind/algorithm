@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdafx.h>
-
 namespace Algo_BitSystem
 {
     template <typename T, typename = std::enable_if_t<std::is_integral_v<T>>>
