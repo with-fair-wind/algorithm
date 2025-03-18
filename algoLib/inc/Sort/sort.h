@@ -61,18 +61,7 @@ namespace Algo_Sort
 
     public:
         Logarithm();
-
-        template <typename T>
-            requires requires { std::cout << std::declval<T>(); }
-        static void printVec(const std::vector<T> &vec)
-        {
-            for (const auto &cur : vec)
-                std::cout << cur << " ";
-            std::cout << "\n";
-        }
-
         void randomVec(std::vector<int> &vec, int maxSize, int maxVal);
-
         void check(func<int> func1, func<int> func2);
     };
 } // namespace Sort
