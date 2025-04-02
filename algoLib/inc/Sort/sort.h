@@ -49,6 +49,9 @@ namespace Algo_Sort
         }
     }
 
+    void mergeSort(std::vector<int> &nums, size_t L, size_t R);
+    void merge(std::vector<int> &nums, size_t L, size_t mid, size_t R);
+
     class Logarithm
     {
         PROPERTY_CREATE(int, rounds)
