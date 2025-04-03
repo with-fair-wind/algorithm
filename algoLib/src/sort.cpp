@@ -103,6 +103,72 @@ namespace Algo_Sort
         return {left, right};
     }
 
+    int findKthLargest(std::vector<int> &nums, int k)
+    {
+        return randomizedSelect(nums, nums.size() - k);
+    }
+
+    int randomizedSelect(std::vector<int> &nums, int k)
+    {
+        for (int L = 0, R = nums.size() - 1; L <= R;)
+        {
+            std::mt19937 generator(std::random_device{}());
+            std::uniform_int_distribution<int> distribution(L, R);
+            int cmp = nums[distribution(generator)];
+            std::pair<int, int> bound = partition_v2(nums, L, R, cmp);
+            if (k >= bound.first && k <= bound.second)
+                return nums[k];
+            else if (k < bound.first)
+                R = bound.first - 1;
+            else
+                L = bound.second + 1;
+        }
+        // return -1;
+    }
+
+    void heapinsert(std::vector<int> &nums, int index)
+    {
+        while (nums[index] > nums[(index - 1) / 2])
+        {
+            std::swap(nums[index], nums[(index - 1) / 2]);
+            index = (index - 1) / 2;
+        }
+    }
+
+    void heapify(std::vector<int> &nums, int index, int size)
+    {
+        int left = index * 2 + 1;
+        while (left < size)
+        {
+            int largest = left + 1 < size && nums[left] < nums[left + 1] ? left + 1 : left;
+            largest = nums[index] < nums[largest] ? largest : index;
+            if (largest == index)
+                break;
+            std::swap(nums[index], nums[largest]);
+            index = largest;
+            left = index * 2 + 1;
+        }
+    }
+
+    void heapSort(std::vector<int> &nums)
+    {
+#if 0
+        // 从顶到底建堆 O(N*logN)
+        for (int i = 0; i < nums.size(); ++i)
+            heapinsert(nums, i);
+#else
+        for (int i = nums.size() - 1; i >= 0; --i)
+            heapify(nums, i, nums.size());
+#endif
+        // 从底到顶建堆 O(N)
+        int size = nums.size();
+        while (size > 1)
+        {
+            std::swap(nums[0], nums[--size]);
+            heapify(nums, 0, size);
+        }
+    }
+
     Logarithm::Logarithm()
     {
         m_rounds = 100000;

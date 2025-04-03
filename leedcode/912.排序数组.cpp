@@ -25,7 +25,8 @@ public:
     {
         // mergeSort(nums, 0, nums.size() - 1);
         // quickSort_v1(nums, 0, nums.size() - 1);
-        quickSort_v2(nums, 0, nums.size() - 1);
+        // quickSort_v2(nums, 0, nums.size() - 1);
+        heapSort(nums);
         return nums;
     }
 
@@ -126,6 +127,49 @@ public:
                 std::swap(nums[index], nums[right--]);
         }
         return {left, right};
+    }
+
+    void heapinsert(std::vector<int> &nums, int index)
+    {
+        while (nums[index] > nums[(index - 1) / 2])
+        {
+            std::swap(nums[index], nums[(index - 1) / 2]);
+            index = (index - 1) / 2;
+        }
+    }
+
+    void heapify(std::vector<int> &nums, int index, int size)
+    {
+        int left = index * 2 + 1;
+        while (left < size)
+        {
+            int largest = left + 1 < size && nums[left] < nums[left + 1] ? left + 1 : left;
+            largest = nums[index] < nums[largest] ? largest : index;
+            if (largest == index)
+                break;
+            std::swap(nums[index], nums[largest]);
+            index = largest;
+            left = index * 2 + 1;
+        }
+    }
+
+    void heapSort(std::vector<int> &nums)
+    {
+#if 1
+        // 从顶到底建堆
+        for (int i = 0; i < nums.size(); ++i)
+            heapinsert(nums, i);
+#else
+        // 从底到顶建堆
+        for (int i = nums.size() - 1; i >= 0; --i)
+            heapify(nums, i, nums.size());
+#endif
+        int size = nums.size();
+        while (size > 1)
+        {
+            std::swap(nums[0], nums[--size]);
+            heapify(nums, 0, size);
+        }
     }
 };
 // @lc code=end
