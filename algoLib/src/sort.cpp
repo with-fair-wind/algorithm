@@ -45,77 +45,62 @@ namespace Algo_Sort
             nums[L + i] = help[i];
     }
 
-    long smallSum(std::vector<int> &nums, size_t L, size_t R)
+    void quickSort_v1(std::vector<int> &nums, int L, int R)
     {
-        if (L == R)
-            return 0;
-        int mid = L + ((R - L) >> 1);
-        return smallSum(nums, L, mid) + smallSum(nums, mid + 1, R) + merge_smallSum(nums, L, mid, R);
+        if (L >= R)
+            return;
+        std::mt19937 generator(std::random_device{}());
+        std::uniform_int_distribution<int> distribution(L, R);
+        int cmp = nums[distribution(generator)];
+        int index = partition_v1(nums, L, R, cmp);
+        quickSort_v1(nums, L, index - 1);
+        quickSort_v1(nums, index + 1, R);
     }
 
-    long merge_smallSum(std::vector<int> &nums, size_t L, size_t mid, size_t R)
+    int partition_v1(std::vector<int> &nums, int L, int R, int cmp)
     {
-        long res = 0.;
-#if 0
-        std::vector<int> help(R - L + 1);
-        size_t pLeft = L, pRight = mid + 1, index = 0;
-        while (pLeft <= mid && pRight <= R)
+        // 设为int类型防止bound - 1为无穷大
+        int bound = L, cmp_index;
+        for (int i = L; i < R; ++i)
         {
-            res += nums[pLeft] <= nums[pRight] ? nums[pLeft] * (R - pRight + 1) : 0;
-            help[index++] = nums[pLeft] <= nums[pRight] ? nums[pLeft++] : nums[pRight++];
+            if (nums[i] <= cmp)
+            {
+                std::swap(nums[i], nums[bound]);
+                if (nums[bound] == cmp)
+                    cmp_index = bound;
+                bound++;
+            }
         }
-#else
-        // 统计部分
-        for (size_t i = L, j = mid + 1, sum = 0; j <= R; ++j)
-        {
-            while (i <= mid && nums[i] <= nums[j])
-                sum += nums[i++];
-            res += sum;
-        }
-
-        std::vector<int> help(R - L + 1);
-        size_t pLeft = L, pRight = mid + 1, index = 0;
-        while (pLeft <= mid && pRight <= R)
-            help[index++] = nums[pLeft] <= nums[pRight] ? nums[pLeft++] : nums[pRight++];
-#endif
-        while (pLeft <= mid)
-            help[index++] = nums[pLeft++];
-        while (pRight <= R)
-            help[index++] = nums[pRight++];
-        for (int i = 0; i < help.size(); ++i)
-            nums[L + i] = help[i];
-        return res;
+        std::swap(nums[cmp_index], nums[bound - 1]);
+        return bound - 1;
     }
 
-    int reversePairs(std::vector<int> &nums, size_t L, size_t R)
+    void quickSort_v2(std::vector<int> &nums, int L, int R)
     {
-        if (L == R)
-            return 0;
-        int mid = L + ((R - L) >> 1);
-        return reversePairs(nums, L, mid) + reversePairs(nums, mid + 1, R) + merge_reversePairs(nums, L, mid, R);
+        if (L >= R)
+            return;
+        std::mt19937 generator(std::random_device{}());
+        std::uniform_int_distribution<int> distribution(L, R);
+        int cmp = nums[distribution(generator)];
+        std::pair<int, int> bound = partition_v2(nums, L, R, cmp);
+        quickSort_v2(nums, L, bound.first - 1);
+        quickSort_v2(nums, bound.second + 1, R);
     }
 
-    int merge_reversePairs(std::vector<int> &nums, size_t L, size_t mid, size_t R)
+    std::pair<int, int> partition_v2(std::vector<int> &nums, int L, int R, int cmp)
     {
-        int res = 0;
-        for (size_t i = L, j = mid + 1; i <= mid; ++i)
+        // 设为int类型防止bound - 1为无穷大
+        int left = L, right = R, index = L;
+        while (index <= right)
         {
-            while (j <= R && nums[i] > 2 * nums[j])
-                j++;
-            res += (j - mid - 1);
+            if (nums[index] < cmp)
+                std::swap(nums[index++], nums[left++]);
+            else if (nums[index] == cmp)
+                index++;
+            else
+                std::swap(nums[index], nums[right--]);
         }
-
-        std::vector<int> help(R - L + 1);
-        size_t pLeft = L, pRight = mid + 1, index = 0;
-        while (pLeft <= mid && pRight <= R)
-            help[index++] = nums[pLeft] <= nums[pRight] ? nums[pLeft++] : nums[pRight++];
-        while (pLeft <= mid)
-            help[index++] = nums[pLeft++];
-        while (pRight <= R)
-            help[index++] = nums[pRight++];
-        for (int i = 0; i < help.size(); ++i)
-            nums[L + i] = help[i];
-        return res;
+        return {left, right};
     }
 
     Logarithm::Logarithm()
