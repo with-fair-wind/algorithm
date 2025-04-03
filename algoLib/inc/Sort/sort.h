@@ -57,6 +57,19 @@ namespace Algo_Sort
     void quickSort_v2(std::vector<int> &nums, int L, int R);
     std::pair<int, int> partition_v2(std::vector<int> &nums, int L, int R, int cmp);
 
+    /// @brief 无序数组中第K大的元素
+    /// @param nums
+    /// @param k
+    /// @return
+    /// @details https://leetcode.cn/problems/kth-largest-element-in-an-array/
+    int findKthLargest(std::vector<int> &nums, int k);
+    /// @details 随机选择算法，时间复杂度O(n)  如果nums排序的话，在i位置的数字是什么
+    int randomizedSelect(std::vector<int> &nums, int k);
+
+    void heapinsert(std::vector<int> &nums, int index);
+    void heapify(std::vector<int> &nums, int index, int size);
+    void heapSort(std::vector<int> &nums);
+
     class Logarithm
     {
         PROPERTY_CREATE(int, rounds)
