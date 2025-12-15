@@ -5,21 +5,15 @@
  */
 
 // @lc code=start
-class MyCircularDeque
-{
-public:
+class MyCircularDeque {
+   public:
     MyCircularDeque(int capacity) : m_capacity(capacity), m_arr(new int[m_capacity]) {}
-    bool insertFront(int value)
-    {
-        if (isFull())
-            return false;
-        if (isEmpty())
-        {
+    bool insertFront(int value) {
+        if (isFull()) return false;
+        if (isEmpty()) {
             m_L = m_R = 0;
             m_arr[m_L] = value;
-        }
-        else
-        {
+        } else {
             m_L = m_L ? m_L - 1 : m_capacity - 1;
             m_arr[m_L] = value;
         }
@@ -27,17 +21,12 @@ public:
         return true;
     }
 
-    bool insertLast(int value)
-    {
-        if (isFull())
-            return false;
-        if (isEmpty())
-        {
+    bool insertLast(int value) {
+        if (isFull()) return false;
+        if (isEmpty()) {
             m_L = m_R = 0;
             m_arr[m_R] = value;
-        }
-        else
-        {
+        } else {
             m_R = m_R == m_capacity - 1 ? 0 : m_R + 1;
             m_arr[m_R] = value;
         }
@@ -45,19 +34,15 @@ public:
         return true;
     }
 
-    bool deleteFront()
-    {
-        if (isEmpty())
-            return false;
+    bool deleteFront() {
+        if (isEmpty()) return false;
         m_L = m_L == m_capacity - 1 ? 0 : m_L + 1;
         m_size--;
         return true;
     }
 
-    bool deleteLast()
-    {
-        if (isEmpty())
-            return false;
+    bool deleteLast() {
+        if (isEmpty()) return false;
         m_R = m_R ? m_R - 1 : m_capacity - 1;
         m_size--;
         return true;
@@ -68,9 +53,9 @@ public:
     bool isEmpty() { return !m_size; }
     bool isFull() { return m_size == m_capacity; }
 
-private:
+   private:
     const int m_capacity;
-    int *m_arr = nullptr;
+    int* m_arr = nullptr;
     int m_L = 0;
     int m_R = 0;
     unsigned int m_size = 0;

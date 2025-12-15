@@ -7,21 +7,17 @@
 #include <queue>
 
 // @lc code=start
-class MyStack
-{
-public:
-    void push(int x)
-    {
+class MyStack {
+   public:
+    void push(int x) {
         m_queue.push(x);
-        for (int i = 0; i < m_queue.size() - 1; ++i)
-        {
+        for (int i = 0; i < m_queue.size() - 1; ++i) {
             m_queue.push(m_queue.front());
             m_queue.pop();
         }
     }
 
-    int pop()
-    {
+    int pop() {
         int ans = m_queue.front();
         m_queue.pop();
         return ans;
@@ -29,7 +25,7 @@ public:
     int top() { return m_queue.front(); }
     bool empty() { return m_queue.empty(); }
 
-private:
+   private:
     std::queue<int> m_queue;
 };
 

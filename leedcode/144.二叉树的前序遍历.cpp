@@ -4,18 +4,17 @@
  * [144] 二叉树的前序遍历
  */
 
-#include <vector>
 #include <stack>
+#include <vector>
 using namespace std;
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 };
 
 // @lc code=start
@@ -30,25 +29,19 @@ struct TreeNode
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution
-{
-public:
-    vector<int> preorderTraversal(TreeNode *head)
-    {
-        if (!head)
-            return {};
+class Solution {
+   public:
+    vector<int> preorderTraversal(TreeNode* head) {
+        if (!head) return {};
         std::vector<int> res;
-        std::stack<TreeNode *> stack;
+        std::stack<TreeNode*> stack;
         stack.push(head);
-        while (!stack.empty())
-        {
-            TreeNode *cur = stack.top();
+        while (!stack.empty()) {
+            TreeNode* cur = stack.top();
             stack.pop();
             res.push_back(cur->val);
-            if (cur->right)
-                stack.push(cur->right);
-            if (cur->left)
-                stack.push(cur->left);
+            if (cur->right) stack.push(cur->right);
+            if (cur->left) stack.push(cur->left);
         }
         return res;
     }

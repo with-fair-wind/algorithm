@@ -7,30 +7,24 @@
 #include <stack>
 
 // @lc code=start
-class MyQueue
-{
-private:
-    void inToOut()
-    {
-        if (m_out.empty())
-        {
-            while (!m_in.empty())
-            {
+class MyQueue {
+   private:
+    void inToOut() {
+        if (m_out.empty()) {
+            while (!m_in.empty()) {
                 m_out.push(m_in.top());
                 m_in.pop();
             }
         }
     }
 
-public:
-    void push(int x)
-    {
+   public:
+    void push(int x) {
         inToOut();
         m_in.push(x);
     }
 
-    int pop()
-    {
+    int pop() {
         inToOut();
         // if (m_out.empty())
         //     return -1;
@@ -39,8 +33,7 @@ public:
         return ans;
     }
 
-    int peek()
-    {
+    int peek() {
         inToOut();
         // return m_out.empty() ? -1 : m_out.top();
         return m_out.top();
@@ -48,7 +41,7 @@ public:
 
     bool empty() { return m_in.empty() && m_out.empty(); }
 
-private:
+   private:
     std::stack<int> m_in;
     std::stack<int> m_out;
 };

@@ -4,26 +4,20 @@
  * [215] 数组中的第K个最大元素
  */
 
-#include <vector>
 #include <random>
+#include <vector>
 
 using namespace std;
 
 // @lc code=start
-class Solution
-{
-public:
-    int findKthLargest(std::vector<int> &nums, int k)
-    {
-        return randomizedSelect(nums, nums.size() - k);
-    }
+class Solution {
+   public:
+    int findKthLargest(std::vector<int>& nums, int k) { return randomizedSelect(nums, nums.size() - k); }
 
-    std::pair<int, int> partition_v2(std::vector<int> &nums, int L, int R, int cmp)
-    {
+    std::pair<int, int> partition_v2(std::vector<int>& nums, int L, int R, int cmp) {
         // 设为int类型防止bound - 1为无穷大
         int left = L, right = R, index = L;
-        while (index <= right)
-        {
+        while (index <= right) {
             if (nums[index] < cmp)
                 std::swap(nums[index++], nums[left++]);
             else if (nums[index] == cmp)
@@ -34,10 +28,8 @@ public:
         return {left, right};
     }
 
-    int randomizedSelect(std::vector<int> &nums, int k)
-    {
-        for (int L = 0, R = nums.size() - 1; L <= R;)
-        {
+    int randomizedSelect(std::vector<int>& nums, int k) {
+        for (int L = 0, R = nums.size() - 1; L <= R;) {
             std::mt19937 generator(std::random_device{}());
             std::uniform_int_distribution<int> distribution(L, R);
             int cmp = nums[distribution(generator)];

@@ -4,13 +4,12 @@
  * [86] 分隔链表
  */
 
-struct ListNode
-{
+struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 // @lc code=start
@@ -24,28 +23,22 @@ struct ListNode
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution
-{
-public:
-    ListNode *partition(ListNode *head, int x)
-    {
+class Solution {
+   public:
+    ListNode* partition(ListNode* head, int x) {
         ListNode *leftHead = nullptr, *leftTail = nullptr;
         ListNode *rightHead = nullptr, *rightTail = nullptr;
-        ListNode *next = nullptr;
-        while (head)
-        {
+        ListNode* next = nullptr;
+        while (head) {
             next = head->next;
             head->next = nullptr;
-            if (head->val < x)
-            {
+            if (head->val < x) {
                 if (!leftHead)
                     leftHead = head;
                 else
                     leftTail->next = head;
                 leftTail = head;
-            }
-            else
-            {
+            } else {
                 if (!rightHead)
                     rightHead = head;
                 else
@@ -54,8 +47,7 @@ public:
             }
             head = next;
         }
-        if (leftTail)
-            leftTail->next = rightHead;
+        if (leftTail) leftTail->next = rightHead;
         return leftHead ? leftHead : rightHead;
     }
 };

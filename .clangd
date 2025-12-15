@@ -1,0 +1,12 @@
+CompileFlags:
+  # 指定首选编译器（仅作补充，clangd 会优先使用 compile_commands.json）
+  # Compiler: g++
+  # 常用补充标志，例如语言标准或额外 include（按需取消注释/修改）
+  Add:
+    - -std=gnu++23
+    - -Wno-vla-extension
+  # 如果需要删除 clangd 自动添加的标志，可在此列出
+  Remove: []
+# 说明：clangd 优先使用项目根或子目录下的 `compile_commands.json`。
+# 如果你希望强制指定 compilation database 目录，请在 VS Code 中
+# 通过 `clangd.arguments` 加上 `--compile-commands-dir=build`。

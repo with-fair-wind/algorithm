@@ -4,13 +4,12 @@
  * [206] 反转链表
  */
 
-struct ListNode
-{
+struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 // @lc code=start
@@ -24,14 +23,11 @@ struct ListNode
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution
-{
-public:
-    ListNode *reverseList(ListNode *head)
-    {
+class Solution {
+   public:
+    ListNode* reverseList(ListNode* head) {
         ListNode *pre = nullptr, *next = nullptr;
-        while (head)
-        {
+        while (head) {
             next = head->next;
             head->next = pre;
             pre = head;
